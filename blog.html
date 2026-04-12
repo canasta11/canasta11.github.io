@@ -2,80 +2,168 @@
   <title>
    Play Canasta Free Online
   </title>
-  <head> 
-<body style="background-color:black;">
-
+  <head>
   <style>
-   table, th, td {
-  border-style: double;
-}
-    body {
-  background-color: white;
+    * {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 12px;
     }
-*{
-font-family: 'Courier New', Courier, monospace;
-  color: white;
-  font-size: 12px;
-}
 
-a:link {
-  color: green;
-  background-color: transparent;
-  text-decoration: none;
-}
+    body {
+      background-color: white;
+      color: black;
+      margin: 20px;
+    }
 
-a:visited {
-  color: red;
-  background-color:transparent;
-  text-decoration: none;
-}
+    a:link {
+      color: black;
+      background-color: transparent;
+      text-decoration: none;
+    }
 
-a:hover {
-  color: black;
-  background-color: transparent;
-  text-decoration: none;
-}
+    a:visited {
+      color: black;
+      background-color: transparent;
+      text-decoration: none;
+    }
 
-a:active {
-  color: white;
-  background-color: transparent;
-  text-decoration: none;
-}
-</style>
-<a href="#1">chair guy</a><br>
+    a:hover {
+      color: black;
+      background-color: transparent;
+      text-decoration: none;
+    }
 
+    a:active {
+      color: black;
+      background-color: transparent;
+      text-decoration: none;
+    }
 
+    .container {
+      max-width: 560px;
+    }
 
+    .ascii-header {
+      color: black;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      white-space: pre;
+    }
 
-<!-- These are your blog entries -->
-<div id="1"><p><img class="img1" src="chariguywb.png"></p>
-<p>6-12-26 sweaty chair guy sprite</p></div>
-<div id="2"><p>This is the second entry.</p></div>
-<div id="3"><p>This is the third entry.</p></div>
-<div id="4"><p>This is the third entry.</p></div>
-<div id="5"><p>This is the third entry.</p></div>
-<div id="6"><p>This is the third entry.</p></div>
-<div id="7"><p>This is the third entry.</p></div>
-<div id="8"><p>This is the third entry.</p></div>
-<div id="9"><p>This is the third entry.</p></div>
-<div id="10"><p>This is the third entry.</p></div>
-<div id="11"><p>This is the third entry.</p></div>
-<div id="12"><p>This is the third entry.</p></div>
-<div id="13"><p>This is the third entry.</p></div>
-<div id="14"><p>This is the third entry.</p></div>
-<div id="15"><p>This is the third entry.</p></div>
-<div id="16"><p>This is the third entry.</p></div>
-<div id="17"><p>This is the third entry.</p></div>
-<div id="18"><p>This is the third entry.</p></div>
-<div id="19"><p>This is the third entry.</p></div>
-<div id="20"><p>This is the third entry.</p></div>
+    .blog-item {
+      margin-bottom: 6px;
+    }
 
-<!-- This is the CSS -->
-<style>
-[id] {
-	display: none;
-}
-[id]:target {
-  display:block;
-}
-</style>
+    .blog-title {
+      cursor: pointer;
+      user-select: none;
+      display: flex;
+      align-items: baseline;
+    }
+
+    .blog-title:hover .title-text {
+      text-decoration: underline dotted;
+    }
+
+    .col-date {
+      color: #888;
+      width: 90px;
+      flex-shrink: 0;
+    }
+
+    .title-text {
+      flex: 1;
+    }
+
+    .arrow {
+      color: #888;
+    }
+
+    @keyframes pulse-new {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .new-tag {
+      color: #2a9e2a;
+      animation: pulse-new 1.8s ease-in-out infinite;
+    }
+
+    .entry-count {
+      color: #888;
+      margin-top: 10px;
+    }
+
+    .blog-entry {
+      margin-left: 90px;
+      max-width: 100%;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+    }
+
+    .blog-entry.open {
+      max-height: 2000px;
+    }
+  </style>
+  </head>
+<body>
+<div class="container">
+
+<pre class="ascii-header">  _______________
+ |_______________|
+        | |
+  ______|_|______
+ |_______________|
+    |         |
+    |         |
+   _|_       _|_
+  |___|     |___|</pre>
+
+<!-- Blog entries -->
+<div class="blog-item">
+  <div class="blog-title" onclick="toggleEntry(this)">
+    <span class="col-date">[06-12-26]</span>
+    <span class="title-text"><span class="arrow">&#9658;</span> chair guy</span>
+  </div>
+  <div class="blog-entry">
+    <p><img class="img1" src="chariguywb.png"></p>
+    <p>sweaty chair guy sprite</p>
+  </div>
+</div>
+
+<p class="entry-count" id="entry-count"></p>
+
+<script>
+  function toggleEntry(titleEl) {
+    var entry = titleEl.nextElementSibling;
+    var arrow = titleEl.querySelector('.arrow');
+    var isOpen = entry.classList.contains('open');
+    if (isOpen) {
+      entry.classList.remove('open');
+      arrow.innerHTML = '&#9658;';
+    } else {
+      entry.classList.add('open');
+      arrow.innerHTML = '&#9660;';
+    }
+  }
+
+  var items = document.querySelectorAll('.blog-item');
+  var count = items.length;
+
+  // Mark first entry as [new]
+  if (count > 0) {
+    var firstTitle = items[0].querySelector('.title-text');
+    var newTag = document.createElement('span');
+    newTag.className = 'new-tag';
+    newTag.textContent = ' [new]';
+    firstTitle.appendChild(newTag);
+  }
+
+  // Set entry count
+  document.getElementById('entry-count').textContent = '(' + count + ')';
+</script>
+
+</div>
+</body>
+</html>
