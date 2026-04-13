@@ -151,7 +151,6 @@
   var items = document.querySelectorAll('.blog-item');
   var count = items.length;
 
-  // Mark first entry as [new]
   if (count > 0) {
     var firstTitle = items[0].querySelector('.title-text');
     var newTag = document.createElement('span');
@@ -160,7 +159,6 @@
     firstTitle.appendChild(newTag);
   }
 
-  // Set entry count
   document.getElementById('entry-count').textContent = '(' + count + ')';
 </script>
 
