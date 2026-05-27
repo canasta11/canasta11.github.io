@@ -1,100 +1,76 @@
 <html>
-  <title>
-   Play Canasta Free Online
-  </title>
+  <title>Play Canasta Free Online</title>
   <head>
   <style>
-    * {
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 12px;
-    }
-
     body {
-      background-color: white;
-      color: black;
-      margin: 36px 40px;
-      line-height: 1.7;
+      background-color: #77775A;
+      padding: 5px 0 0 5px;
+      margin: 0;
     }
-
-    a:link {
-      color: black;
-      background-color: transparent;
-      text-decoration: none;
-    }
-
-    a:visited {
-      color: black;
-      background-color: transparent;
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: black;
-      background-color: transparent;
-      text-decoration: none;
-    }
-
-    a:active {
-      color: black;
-      background-color: transparent;
-      text-decoration: none;
-    }
-
-    .container {
+    .content-box {
+      background-color: black;
+      width: fit-content;
       max-width: 560px;
+      padding: 1px;
     }
-
+    * {
+      font-family: Arial, sans-serif;
+      color: white;
+      font-size: 8pt;
+      line-height: 1.6;
+    }
+    a:link    { color: white; text-decoration: none; background-color: transparent; }
+    a:visited { color: white; text-decoration: none; background-color: transparent; }
+    a:hover   { color: white; text-decoration: none; background-color: transparent; }
+    a:active  { color: white; text-decoration: none; background-color: transparent; }
     .ascii-header {
-      color: black;
-      margin-bottom: 20px;
-      line-height: 1.2;
       white-space: pre;
+      line-height: 1.2;
+      margin-bottom: 14px;
     }
-
+    .list-wrap {
+      padding: 2px 4px;
+    }
+    .row {
+      display: flex;
+      align-items: stretch;
+    }
+    .grey-side {
+      background-color: #999;
+      width: 23px;
+      flex-shrink: 0;
+    }
     .blog-item {
       margin-bottom: 14px;
     }
-
     .blog-title {
       cursor: pointer;
       user-select: none;
       display: flex;
       align-items: baseline;
     }
-
     .blog-title:hover .title-text {
       text-decoration: underline dotted;
     }
-
     .col-date {
       color: #888;
       width: 90px;
       flex-shrink: 0;
     }
-
     .title-text {
       flex: 1;
     }
-
     .arrow {
       color: #888;
     }
-
     @keyframes pulse-new {
       0%, 100% { opacity: 1; }
       50% { opacity: 0.3; }
     }
-
     .new-tag {
       color: #2a9e2a;
       animation: pulse-new 1.8s ease-in-out infinite;
     }
-
-    .entry-count {
-      color: #888;
-      margin-top: 10px;
-    }
-
     .blog-entry {
       margin-left: 90px;
       max-width: 100%;
@@ -102,14 +78,16 @@
       overflow: hidden;
       transition: max-height 0.25s ease;
     }
-
     .blog-entry.open {
       max-height: none;
     }
   </style>
   </head>
-<body>
-<div class="container">
+  <body>
+
+<div class="row">
+<div class="content-box">
+<div class="list-wrap">
 
 <pre class="ascii-header">  _______________
  |_______________|
@@ -121,7 +99,6 @@
    _|_       _|_
   |___|     |___|</pre>
 
-<!-- Blog entries -->
 <div class="blog-item">
   <div class="blog-title" onclick="toggleEntry(this)">
     <span class="col-date">[05-11-26]</span>
@@ -190,7 +167,11 @@
   </div>
 </div>
 
-<p class="entry-count" id="entry-count"></p>
+
+</div>
+</div>
+<div class="grey-side"></div>
+</div>
 
 <script>
   function toggleEntry(titleEl) {
@@ -217,9 +198,7 @@
     firstTitle.appendChild(newTag);
   }
 
-  document.getElementById('entry-count').textContent = '(' + count + ')';
 </script>
 
-</div>
-</body>
+  </body>
 </html>
